@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos personalizados adicionais aqui, se houver */
+
+@media print {
+  /* 1. Ocultar tudo por padrão */
+  body * {
+    visibility: hidden;
+  }
+
+  /* 2. Tornar o contêiner do relatório e seu conteúdo visíveis */
+  #report-content,
+  #report-content * {
+    visibility: visible;
+  }
+
+  /* 3. Posicionar o contêiner do relatório para ocupar a página */
+  #report-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0; /* Remove margens do container */
+    padding: 1cm; /* Adiciona margens internas para impressão */
+    border: none; /* Remove bordas se houver */
+    box-shadow: none; /* Remove sombras se houver */
+    background-color: white; /* Fundo branco */
+    print-color-adjust: exact; /* Garante cores e fundos */
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* 4. Ajustes gerais do body para impressão */
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: white !important;
+    color: black !important; /* Garante texto preto */
+    font-size: 10pt !important; /* Tamanho de fonte padrão para impressão */
+    line-height: 1.3 !important; /* Espaçamento entre linhas */
+  }
+
+  /* 5. Evitar quebras de página indesejadas */
+  table, thead, tbody, tr, th, td, .report-group, .order-item {
+    page-break-inside: avoid !important;
+  }
+
+  h2, h3 {
+     page-break-after: avoid !important;
+  }
+
+  /* 6. Configuração da página (opcional, navegador geralmente lida bem) */
+  @page {
+    size: A4 portrait;
+    margin: 0.5cm; /* Margens da página física */
+  }
+
+  /* 7. Ajustes finos dentro do relatório (opcional) */
+  #report-content .print-header {
+    /* Estilos específicos para o cabeçalho de impressão, se necessário */
+    margin-bottom: 1cm;
+  }
+
+  #report-content table {
+     width: 100%;
+     border-collapse: collapse;
+  }
+
+  #report-content th, #report-content td {
+     border: 1px solid #ccc;
+     padding: 4px 6px;
+     text-align: left;
+  }
+  
+  #report-content th {
+      background-color: #f2f2f2;
+  }
+
+}
+
+
