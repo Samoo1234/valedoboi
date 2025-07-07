@@ -10,6 +10,7 @@ import SalesDashboardPage from './pages/SalesDashboardPage'; // Dashboard de Ven
 import Login from './pages/Login';
 import { PrivateRoute } from './components/PrivateRoute';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import AudioAlert from './components/AudioAlert'; // Importar o componente de alerta sonoro
 // import DebugLogView from './components/DebugLogView'; // Import DebugLogView
 
 const App: React.FC = () => {
@@ -62,6 +63,9 @@ const App: React.FC = () => {
         }}
       />
       <ErrorBoundary>
+        {/* Componente de alerta sonoro para novos pedidos */}
+        <AudioAlert volume={0.7} enabled={true} />
+        
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route element={<PrivateRoute />}>
